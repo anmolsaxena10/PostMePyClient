@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Posts {% endblock %}
+
+{% block main %}
+<div class="container">
+<ul class="collection">
+{% for post in posts %}
+    <li class="collection-item avatar">
+    <i class="material-icons circle">account_circle</i>
+      <span class="title">{{post.headline}}</span>
+      <p>{{post.user.username}}<br>
+        {{post.time}}
+        </p>
+      <a href="/ViewPost?id={{post.postId}}" class="secondary-content"><i class="material-icons">send</i></a>
+    </li>
+{% endfor %}
+</ul>
+
+<ul class="pagination">
+        <li class="waves-effect"><a href="/?page={{prevPage}}"><i class="material-icons">chevron_left</i></a></li>
+        <li class="waves-effect"><a href="/?page={{nextPage}}"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+
+</div>
+{% endblock %}

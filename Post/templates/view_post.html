@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %} Post {% endblock %}
+
+{% block main %}
+<div class="container">
+    <ul class="collection" id="comments">
+            <li class="collection-header center-align"><h4>{{post.headline}}</h4>
+            </li>
+            <p>{{post.description}}</p>
+            <hr>
+            <h4>Comments</h4>
+    </ul>
+</div>
+
+<script>
+    var comments = [
+    {% for comment in comments %}
+    {
+        'commentId': '{{comment.commentId}}',
+        'time': '{{comment.time}}',
+        'description': '{{comment.description}}',
+        'user': {
+            'userId': '{{comment.user.userId}}',
+            'username': '{{comment.user.username}}'
+        },
+        'replyOfComment': '{{comment.replyOfComment}}'
+    },
+    {% endfor %}
+    ];
+    console.log(comments);
+
+    comments.forEach(comment => {
+            if (comment.replyOfComment === "-1") {
+                var c = `
+                
+                    <li class="collection-item" id="`+ comment.commentId +`">
+                        <h6>User: `+ comment.user.username +`</h6>
+                        <p>`+ comment.description +`</p>
+                        <ul class="collection" id="l`+ comment.commentId +`">
+                        </ul>
+                    </li>
+                `;
+                console.log(c);
+                $('#comments').append(c);
+            }
+            else {
+                var c = `
+                
+                    <li class="collection-item" id="`+ comment.commentId +`">
+                        <h6>User: `+ comment.user.username +`</h6>
+                        <p>`+ comment.description +`</p>
+                        <ul class="collection" id="l`+ comment.commentId +`">
+                        </ul>
+                    </li>
+               
+                `;
+                $('#l' + comment.replyOfComment).append(c);
+            }
+        });
+</script>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<nav>
+    <div class="nav-wrapper brown">
+        <a href="#" class="brand-logo">PostMe</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {% if request.session.isLoggedIn %}
+                <li><a href="/" class="">Home</a></li>
+                <li><a href="/add_post" class="">Add Post</a></li>
+                <li><a href="/logout" class="">Logout</a></li>
+            {% else %}
+                <li><a href="/" class="">Home</a></li>
+                <li><a href="/register" class="">Register</a></li>
+                <li><a href="/login" class="">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    {% if request.session.isLoggedIn %}
+        <li><a href="/" class="">Home</a></li>
+        <li><a href="/add_post" class="">Add Post</a></li>
+        <li><a href="/logout" class="">Logout</a></li>
+    {% else %}
+        <li><a href="/" class="">Home</a></li>
+        <li><a href="/register" class="">Register</a></li>
+        <li><a href="/login" class="">Login</a></li>
+    {% endif %}
+</ul>
