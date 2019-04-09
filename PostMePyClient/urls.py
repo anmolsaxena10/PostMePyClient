@@ -30,5 +30,8 @@ urlpatterns = [
     path('ViewPost', view_post),
     path('add_comment', add_comment),
     path('do_add_comment', do_add_comment),
-    path('logout', logout)
+    path('logout', logout),
+    path('delete_comment', delete_comment),
+    path('add_post', add_post),
+    path('do_add_post', do_add_post)
 ]

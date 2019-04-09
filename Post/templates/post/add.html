@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Post {% endblock %}
+
+{% block main %}
+<div class="container">
+    <form action='do_add_post' method="POST">{% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="headline" name="headline" type="text" class="validate">
+                <label for="headline">Headline</label>
+            </div>
+            <div class="input-field col s12">
+                    <input id="description" name="description" type="text" class="validate">
+                    <label for="description">Description</label>
+                </div>
+        </div>
+        <button class="btn waves-effect waves-light brown darken-4" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+
+{% endblock %}

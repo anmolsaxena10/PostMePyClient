@@ -34,7 +34,18 @@ def register(request):
     return render(request, 'auth/register.html', c)
 
 def do_register(request):
-    pass
+    try:
+        client = Client("http://localhost:8733/PostMeService/?singleWsdl")
+        u = client.factory.create('ns0:User')
+        u.username = request.POST.get('username', '')
+        u.firstName = request.POST.get('first_name', '')
+        u.lastName = request.POST.get('last_name', '')
+        u.password = request.POST.get('password', '')
+        uid = client.service.addUser(u)
+        print(uid)
+        return redirect('/login')
+    except:
+        return redirect('/')
 
 def logout(request):
     request.session['isLoggedIn'] = False

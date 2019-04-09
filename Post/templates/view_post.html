@@ -30,7 +30,7 @@
     {% endfor %}
     ];
     console.log(comments);
-
+    var userId = {{request.session.user.userId}};
     comments.forEach(comment => {
             if (comment.replyOfComment === "-1") {
                 var c = `
@@ -38,8 +38,11 @@
                     <li class="collection-item" id="`+ comment.commentId +`">
                         <h6>User: `+ comment.user.username +`</h6>
                         <p>`+ comment.description +`</p>
-                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a>
-                        <ul class="collection" id="l`+ comment.commentId +`">
+                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a> | `;
+                    if(comment.user.userId == userId){
+                        c += `<a href="delete_comment?cId=`+comment.commentId+`">delete</a>`;
+                    }    
+                     c +=`<ul class="collection" id="l`+ comment.commentId +`">
                         </ul>
                     </li>
                 `;
@@ -52,8 +55,11 @@
                     <li class="collection-item" id="`+ comment.commentId +`">
                         <h6>User: `+ comment.user.username +`</h6>
                         <p>`+ comment.description +`</p>
-                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a>
-                        <ul class="collection" id="l`+ comment.commentId +`">
+                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a> | `;
+                    if(comment.user.userId == userId){
+                        c+=`<a href="delete_comment?cId=`+comment.commentId+`">delete</a>`
+                    }
+                        c+=`<ul class="collection" id="l`+ comment.commentId +`">
                         </ul>
                     </li>
                

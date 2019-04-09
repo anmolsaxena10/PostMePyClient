@@ -33,4 +33,9 @@ def do_add_comment(request):
         return redirect('/ViewPost?id=' + request.POST.get('postId', 2))
 
 def delete_comment(request):
-    pass
+    cId = int(request.GET.get('cId'))
+    client = Client("http://localhost:8733/PostMeService/?singleWsdl")
+    comment = client.service.getComment(cId)
+    if comment.user.userId == request.session['user']['userId']:
+        client.service.removeComment(cId)
+    return redirect('/ViewPost?id=' + str(comment.post.postId))
