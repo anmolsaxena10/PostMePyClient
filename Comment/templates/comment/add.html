@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Comment {% endblock %}
+
+{% block main %}
+<div class="container">
+    <form action='do_add_comment' method="POST">{% csrf_token %}
+        <input type="hidden" value="{{postId}}" name="postId" hidden>
+        <input type="hidden" value="{{replyOfComment}}" name="replyOfComment" hidden>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="description" name="description" type="text" class="validate">
+                <label for="description">Description</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light brown darken-4" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+
+{% endblock %}

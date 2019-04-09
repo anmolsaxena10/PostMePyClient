@@ -18,3 +18,9 @@ def view_post(request):
         'comments': comments
     }
     return render(request, 'view_post.html', c)
+
+def add_post(request):
+    pass
+
+def do_add_post(request):
+    pass

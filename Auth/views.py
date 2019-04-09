@@ -17,7 +17,12 @@ def do_login(request):
     try:
         user = client.service.verify(username, password)
         request.session['isLoggedIn'] = True
-        request.session['user'] = user
+        request.session['user'] = {
+            'userId': user.userId,
+            'username': user.username,
+            'firstName': user.firstName,
+            'lastName': user.lastName
+        }
         print(user)
         return redirect('/')
     except:
@@ -30,3 +35,7 @@ def register(request):
 
 def do_register(request):
     pass
+
+def logout(request):
+    request.session['isLoggedIn'] = False
+    return redirect('/')

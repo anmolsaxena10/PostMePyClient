@@ -10,6 +10,7 @@
             <p>{{post.description}}</p>
             <hr>
             <h4>Comments</h4>
+            <a href="add_comment?postId={{post.postId}}&replyOfComment=-1">Add Comment</a>
     </ul>
 </div>
 
@@ -37,6 +38,7 @@
                     <li class="collection-item" id="`+ comment.commentId +`">
                         <h6>User: `+ comment.user.username +`</h6>
                         <p>`+ comment.description +`</p>
+                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a>
                         <ul class="collection" id="l`+ comment.commentId +`">
                         </ul>
                     </li>
@@ -50,6 +52,7 @@
                     <li class="collection-item" id="`+ comment.commentId +`">
                         <h6>User: `+ comment.user.username +`</h6>
                         <p>`+ comment.description +`</p>
+                        <a href="add_comment?postId={{post.postId}}&replyOfComment=`+comment.commentId+`">reply</a>
                         <ul class="collection" id="l`+ comment.commentId +`">
                         </ul>
                     </li>

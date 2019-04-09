@@ -18,6 +18,7 @@ from django.urls import path
 from .views import *
 from Auth.views import *
 from Post.views import *
+from Comment.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('register', register),
     path('do_register', do_register),
     path('ViewPost', view_post),
+    path('add_comment', add_comment),
+    path('do_add_comment', do_add_comment),
+    path('logout', logout)
 ]
